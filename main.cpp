@@ -3,8 +3,7 @@
 #include "quad.h"
 #include "road.h"
 #include <vector>
-////////////////////////////////////////////////////////////// Hier ist Stausimulation {
-using namespace basti;
+//////////////////////////////////////////////////////////// Hier ist Stausimulation {
 road funkyroad;
 road funkyroad2;
 road funkyroad3;
@@ -26,11 +25,12 @@ public:
 	
 	road_x(): p(NULL), r(NULL)
 	{
-		r = new road;
+		r = new road();
 	}
 	road_x(road_x* next): p(next), r()
 	{
-		r = new road;
+		r = new road();
+		r->first_car=NULL;
 	}
 	~road_x()
 	{
@@ -40,8 +40,7 @@ public:
 
 	void draw()
 	{
-		std::cout<<r<<std::endl;
-		//r->draw();
+		r->draw();
 	}
 	
 	void move()
@@ -59,10 +58,8 @@ public:
 	roads()
 	{
 		head = NULL;
-		head = new road_x(head);
-		std::cout<<head->r<<std::endl;
-		std::cout<<__roadptr<<std::endl;
-		//head->r = &funkyroad;	
+		for(int i = 0; i<150; i++)
+			head = new road_x(head);
 	}
 	
 
@@ -107,7 +104,11 @@ roads* _roads;
 void render(void) 
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	_roads->draw();
+	
+	glPushMatrix();
+	glTranslatef(0,220,0);
+	_roads->draw();	
+	glPopMatrix();	
 //	glRotatef(0.01,0,0,1);
 /*
 	glPushMatrix();

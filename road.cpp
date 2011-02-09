@@ -6,13 +6,12 @@
 #include <iostream>
 #include "car.h"
 
-using namespace basti;
 void road::draw()
 {
 	current_car=first_car;
 	while(current_car)
 	{
-		//current_car->draw();
+	//	current_car->draw();
 		current_car->draw_animated(timer);
 		current_car = current_car->next_car;
 	}
