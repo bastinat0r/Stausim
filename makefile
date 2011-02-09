@@ -16,7 +16,7 @@ all: stausim
 
 
 
-myprog: $(OBJFILES)
+stausim: $(OBJFILES)
 
 	$(CC) -o stausim $(OBJFILES) $(LDFLAGS)
 
