@@ -30,7 +30,7 @@ public:
 	road_x(road_x* next): p(next), r()
 	{
 		r = new road();
-		r->first_car=NULL;
+		//r->first_car=NULL;
 	}
 	~road_x()
 	{
