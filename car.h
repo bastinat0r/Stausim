@@ -7,9 +7,9 @@
 #include "stoppwatch.h"
 
 
-const int _car_mspmove = 250;
-const int _road_lenght = 300;
-const float _car_zVal = -500;
+const int _car_mspmove = 200;
+const int _road_lenght = 350;
+const float _car_zVal = -400;
 
 class car
 {

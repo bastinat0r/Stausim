@@ -106,7 +106,8 @@ void render(void)
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
 	glPushMatrix();
-	glTranslatef(0,220,0);
+	glRotatef(24,0,1,0);
+	glTranslatef(160,220,0);
 	_roads->draw();	
 	glPopMatrix();	
 //	glRotatef(0.01,0,0,1);
@@ -208,7 +209,7 @@ int main(int argc, char **argv)
 	glutInitWindowSize(800,500);
 	glutCreateWindow("Road!");
 	
-	//glutFullScreen();				// Fulllscreenmode if wanted...
+	glutFullScreen();				// Fulllscreenmode if wanted...
 	glEnable(GL_DEPTH_TEST);
 
 
