@@ -12,13 +12,13 @@ OBJFILES := $(patsubst %.cpp,%.o,$(wildcard *.cpp))
  
 
 
-all: myprog
+all: stausim
 
 
 
 myprog: $(OBJFILES)
 
-	$(CC) -o myprog $(OBJFILES) $(LDFLAGS)
+	$(CC) -o stausim $(OBJFILES) $(LDFLAGS)
 
 
 

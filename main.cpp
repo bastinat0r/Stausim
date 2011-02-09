@@ -41,7 +41,7 @@ public:
 	void draw()
 	{
 		std::cout<<r<<std::endl;
-		r->draw();
+		//r->draw();
 	}
 	
 	void move()
