@@ -10,7 +10,7 @@ car::car(int _speed, car* next) : oldposition(0),	position(0),	speed(_speed), ma
 		int x = rand();
 		if(x < 0.1*RAND_MAX)		// -> 10%
 		{
-			p = 0.7;
+			p = 0.8;
 			image_animated.r = 1;
 			image_animated.g = 0;
 			image_animated.b = 0;

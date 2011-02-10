@@ -26,7 +26,7 @@ void road::move()
 		if(!(first_car)) first_car = new car(2,first_car);
 		if (first_car->position > 2) 
 		{
-			if(rand()>RAND_MAX/3)
+			if(rand()>RAND_MAX/4)
 			{
 				first_car = new car(2,first_car);
 			}
