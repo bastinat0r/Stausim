@@ -3,14 +3,7 @@
 #include "quad.h"
 #include "road.h"
 #include <vector>
-//////////////////////////////////////////////////////////// Hier ist Stausimulation {
-road funkyroad;
-road funkyroad2;
-road funkyroad3;
-road funkyroad4;
-road funkyroad5;
-road funkyroad6;
-////////////////////////////////////////////////////////////// }
+#include <time.h>
 
 class road_x
 {
@@ -108,60 +101,29 @@ void render(void)
 	glPushMatrix();
 	glRotatef(24,0,1,0);
 	glTranslatef(160,220,0);
-	_roads->draw();	
-	glPopMatrix();	
-//	glRotatef(0.01,0,0,1);
-/*
-	glPushMatrix();
-		glTranslatef(0,-3,0);
-		funkyroad.draw();
-	glPopMatrix();	
-	glPushMatrix();
-		glTranslatef(0,-9,0);
-		funkyroad3.draw();
-	glPopMatrix();
-	glPushMatrix();
-		glTranslatef(0,-15,0);
-		funkyroad5.draw();
-	glPopMatrix();
-
 	
-	glPushMatrix();
-		glRotatef(180,0,0,1);
-	glPushMatrix();
-		glTranslatef(0,-3,0);
-		funkyroad2.draw();
-	glPopMatrix();
-	glPushMatrix();
-		glTranslatef(0,-9,0);
-		funkyroad3.draw();
-	glPopMatrix();
-	glPushMatrix();
-		glTranslatef(0,-15,0);
-		funkyroad4.draw();
-	glPopMatrix();
-	glPopMatrix();
-*/	
+	_roads->draw();	
+	
+	glPopMatrix();	
 	glutSwapBuffers();
 }
 
 void idle(void)
 {
-	
-	/*timer_g.stop();
-	if(timer_g.gettime() < 20)
-	{
-		usleep(3000);
-	}
+	timer_g.stop();
+	float x = timer_g.gettime();
 	timer_g.start();
-	*/
-	/*funkyroad.move();
-	funkyroad2.move();
-	funkyroad3.move();
-	funkyroad4.move();
-	funkyroad5.move();
-*/
+	
+	if(x < 20)
+	{
+		timespec t;
+		t.tv_sec = 0;
+		t.tv_nsec = 100*1000*(20-x);
+		nanosleep(&t, NULL);
+	}
+	
 	_roads->move();
+	
 	render();
 }
 
@@ -209,7 +171,7 @@ int main(int argc, char **argv)
 	glutInitWindowSize(800,500);
 	glutCreateWindow("Road!");
 	
-	glutFullScreen();				// Fulllscreenmode if wanted...
+//	glutFullScreen();				// Fulllscreenmode if wanted...
 	glEnable(GL_DEPTH_TEST);
 
 
