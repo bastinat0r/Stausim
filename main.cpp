@@ -44,7 +44,9 @@ public:
 	
 	void move()
 	{	
-		r->move();
+		r->move();		// move all cars on the road
+		if(p)
+			p->move();	// move all cars on the next roads in the list
 	}	
 };
 
@@ -70,18 +72,15 @@ public:
 	void draw()
 	{
 		glPushMatrix();
-		head->draw();
+			if(head) 
+				head->draw();
 		glPopMatrix();
 	}
 	
 	void move()
 	{
-		road_x* p = head;		
-		while(p)
-		{
-			p->move();
-			p = p->get_next();
-		}
+		if(head)
+			head->move();
 	}
 	
 	~roads()
@@ -94,7 +93,7 @@ public:
 stopwatch timer_g;
 roads* _roads;
 
-void render(void) 
+void render(void)		// OGL-Render-function. Renders everithing. 
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
@@ -106,7 +105,7 @@ void render(void)
 	glutSwapBuffers();
 }
 
-void idle(void)
+void idle(void)		// OGL-Idle-funtion
 {
 	timer_g.stop();
 	float x = timer_g.gettime();
