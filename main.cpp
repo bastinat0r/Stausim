@@ -5,11 +5,13 @@
 #include <vector>
 #include <time.h>
 
-class road_x
+const int num_roads = 70;
+
+class road_x    // class to link roads to a list
 {
 public:
-	road_x* p;	
-	road* r;
+	road_x* p;  // pointer to next road_x	
+	road* r;    // pointer to road-object from road.h
 		
 	road_x* get_next()
 	{
@@ -25,15 +27,19 @@ public:
 		r = new road();
 		//r->first_car=NULL;
 	}
+
 	~road_x()
 	{
-		if(r) delete(r);
-		if(p) delete(p);
+		if(r) delete(r);    // free road
+		if(p) delete(p);    // free tail of the list
 	}	
 
 	void draw()
 	{
-		r->draw();
+        glTranslatef(0,-3,0);
+		r->draw();          // draw the road
+        if(p)
+            p->draw();          // draw tail
 	}
 	
 	void move()
@@ -42,7 +48,7 @@ public:
 	}	
 };
 
-class roads
+class roads // List of all roads
 {
 public:
 	
@@ -51,7 +57,7 @@ public:
 	roads()
 	{
 		head = NULL;
-		for(int i = 0; i<150; i++)
+		for(int i = 0; i<num_roads; i++)
 			head = new road_x(head);
 	}
 	
@@ -64,13 +70,7 @@ public:
 	void draw()
 	{
 		glPushMatrix();
-		road_x* p = head;
-		while(p)
-		{
-			glTranslatef(0,-3,0);
-			p->draw();
-			p = p->get_next();
-		}
+		head->draw();
 		glPopMatrix();
 	}
 	
@@ -100,7 +100,7 @@ void render(void)
 	
 	glPushMatrix();
 	glRotatef(24,0,1,0);
-	glTranslatef(160,220,0);
+	glTranslatef(160,num_roads + 20,0);
 	_roads->draw();
 	glPopMatrix();	
 	glutSwapBuffers();
