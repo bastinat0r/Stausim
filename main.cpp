@@ -5,9 +5,9 @@
 #include <vector>
 #include <time.h>
 
-const int num_roads = 70;
+const int num_roads = 1;
 
-class road_x    // class to link roads to a list
+class road_x    // (wrapping) class to link roads to a list
 {
 public:
 	road_x* p;  // pointer to next road_x	
@@ -56,7 +56,7 @@ public:
 	
 	road_x* head;
 	
-	roads()
+	roads()		// filling the list
 	{
 		head = NULL;
 		for(int i = 0; i<num_roads; i++)
@@ -69,6 +69,7 @@ public:
 		head = new road_x(head);
 		head->r = road_p;
 	}
+
 	void draw()
 	{
 		glPushMatrix();
@@ -99,7 +100,7 @@ void render(void)		// OGL-Render-function. Renders everithing.
 	
 	glPushMatrix();
 	glRotatef(24,0,1,0);
-	glTranslatef(160,num_roads + 20,0);
+	glTranslatef(_road_lenght / 2 ,num_roads * 1.5, 0);
 	_roads->draw();
 	glPopMatrix();	
 	glutSwapBuffers();
@@ -107,7 +108,7 @@ void render(void)		// OGL-Render-function. Renders everithing.
 
 void idle(void)		// OGL-Idle-funtion
 {
-	timer_g.stop();
+/*	timer_g.stop();
 	float x = timer_g.gettime();
 	timer_g.start();
 	
@@ -116,8 +117,8 @@ void idle(void)		// OGL-Idle-funtion
 		timespec t;
 		t.tv_sec = 0;
 		t.tv_nsec = 100*1000*(20-x);
-		nanosleep(&t, NULL);
-	}
+//		nanosleep(&t, NULL);	// damn dosn't work :-(
+	} */
 	
 	_roads->move();
 	
@@ -168,7 +169,7 @@ int main(int argc, char **argv)
 	glutInitWindowSize(800,500);
 	glutCreateWindow("Road!");
 	
-	//glutFullScreen();				// Fulllscreenmode if wanted...
+	glutFullScreen();				// Fulllscreenmode if wanted...
 	glEnable(GL_DEPTH_TEST);
 
 
