@@ -1,9 +1,14 @@
 #include <iostream>
-#include <GL/glut.h>
 #include "quad.h"
 #include "road.h"
 #include <vector>
 #include <time.h>
+
+#ifdef __APPLE__
+#include <GLUT/glut.h>
+#else
+#include <GL/glut.h>
+#endif
 
 const int num_roads = 1;
 
