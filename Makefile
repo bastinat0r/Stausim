@@ -3,7 +3,17 @@
 CC = g++
 
 CFLAGS = -Wall -O2
+
+UNAME := $(shell uname)
+
+ifeq ($(UNAME), Linux)
 LDFLAGS += -lglut -lGLU
+endif
+
+ifeq ($(UNAME), Darwin)
+LDFLAGS += -framework OpenGL -framework GLUT
+endif
+
 
 
 COMPILE = $(CC) $(CFLAGS) -c
