@@ -10,7 +10,7 @@
 #include <GL/glut.h>
 #endif
 
-const int num_roads = 1;
+int num_roads = 1;
 
 class road_x    // (wrapping) class to link roads to a list
 {
@@ -160,6 +160,12 @@ void processNormalKeys(unsigned char key, int x, int y) {
 
 	if (key == 27) 
 		exit(0);
+	
+	if (key == 'n')
+	{
+		num_roads++;
+		_roads->add_road(new road);
+	}
 }
 
 int main(int argc, char **argv) 
