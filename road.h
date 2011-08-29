@@ -6,6 +6,7 @@
 #include "vektorrechnung.h"
 #include "stoppwatch.h"
 #include <iostream>
+#include <stdlib.h>
 #include "car.h"
 
 class road
