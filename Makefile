@@ -36,3 +36,6 @@ stausim: $(OBJFILES)
 
 	$(COMPILE) -o $@ $<
 
+clean:
+	
+	rm *.o
