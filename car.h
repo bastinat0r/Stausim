@@ -8,8 +8,8 @@
 
 
 const int _car_mspmove = 150;
-const int _road_lenght = 350;
-const float _car_zVal = -400;
+const int _road_lenght = 250;
+const float _car_zVal = -300;
 
 class car
 {

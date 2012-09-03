@@ -2,7 +2,7 @@
 
 CC = g++
 
-CFLAGS = -Wall -O2
+CFLAGS = -Wall -O3
 
 UNAME := $(shell uname)
 

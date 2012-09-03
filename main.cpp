@@ -42,9 +42,9 @@ public:
 	void draw()
 	{
         glTranslatef(0,-3,0);
-		r->draw();          // draw the road
+					r->draw();          // draw the road
         if(p)
-            p->draw();          // draw tail
+          p->draw();          // draw tail
 	}
 	
 	void move()
@@ -97,18 +97,26 @@ public:
 };
 
 stopwatch timer_g;
+//stopwatch timer_fps;
 roads* _roads;
 
 void render(void)		// OGL-Render-function. Renders everithing. 
 {
+//	std::cout<<"out "<<timer_fps.gettime()<<std::endl;
+// 	timer_fps.start();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
 	glPushMatrix();
-	glRotatef(24,0,1,0);
+	glRotatef(10,0,1,0);
 	glTranslatef(_road_lenght / 2 ,num_roads * 1.5, 0);
 	_roads->draw();
-	glPopMatrix();	
+	
+	glPopMatrix();
+	
 	glutSwapBuffers();
+//	std::cout<<"in  "<<timer_fps.gettime()<<std::endl;
+//	timer_fps.start();
+
 }
 
 void idle(void)		// OGL-Idle-funtion
@@ -126,7 +134,6 @@ void idle(void)		// OGL-Idle-funtion
 	} */
 	
 	_roads->move();
-	
 	render();
 }
 

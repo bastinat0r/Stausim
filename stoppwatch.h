@@ -1,23 +1,25 @@
 #ifndef _stopwatch_h
 #define _stopwatch_h
 
-#include <ctime>
+#include <sys/time.h>
+#include <stdio.h>
+#include <unistd.h>
 
 class stopwatch
 {
 private:
 	bool stopped;
-	clock_t NewCount, OldCount;
+	struct timeval start_t, end_t;
 
 public:
 	double getfrequency()
 	{
-		return (double) CLOCKS_PER_SEC;
+		return 42.0;
 	};
 
 	inline void start()
 	{
-		OldCount = clock();
+		gettimeofday(&start_t, NULL);
 	};
 	
 	stopwatch()
@@ -29,19 +31,24 @@ public:
 	inline void stop()
 	{
 		stopped = true;
-		NewCount = clock();
+		gettimeofday(&end_t, NULL);
 	};
 
 	double gettime()		// in ms
 	{
 		if(!stopped){stop();}
-		return (1000*(double)((NewCount - OldCount)))/((double)CLOCKS_PER_SEC);
+	  
+		long seconds  = end_t.tv_sec  - start_t.tv_sec;
+	  long useconds = end_t.tv_usec - start_t.tv_usec;
+
+    long mtime = ((seconds) * 1000 + useconds/1000.0) + 0.5;
+		return mtime;
 	};
 
 	int randomize()
 	{
 		stop();
-		return (int)NewCount;
+		return end_t.tv_usec;
 	};
 };
 
