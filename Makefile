@@ -7,7 +7,7 @@ CFLAGS = -Wall -O2
 UNAME := $(shell uname)
 
 ifeq ($(UNAME), Linux)
-LDFLAGS += -lglut -lGLU
+LDFLAGS += -lglut -lGLU -lGL
 endif
 
 ifeq ($(UNAME), Darwin)
